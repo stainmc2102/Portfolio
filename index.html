@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stain - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* CSS reset & base */
+        body {
+            box-sizing: border-box;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -77,17 +78,9 @@
             margin-bottom: 2rem;
             position: relative;
             white-space: nowrap;
-            overflow: hidden; /* Cần thiết cho hiệu ứng typing */
             border-right: 3px solid rgba(255, 255, 255, 0.8);
-            /* animation: typing-cursor 1s infinite; // Chỉ dùng cho JS control */
+            animation: typing-cursor 1s infinite;
         }
-        
-        /* Hiệu ứng con trỏ typing chỉ nên chạy sau khi JS bắt đầu đánh máy */
-        .typing-effect {
-            animation: typing-cursor 1s infinite, typewriter 2s steps(20, end) 1s forwards;
-            width: 0;
-        }
-
 
         .intro-logo::after {
             content: '';
@@ -174,8 +167,7 @@
             background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
             background-size: 200% 100%;
             border-radius: 2px;
-            /* animation: loadingProgress 3s ease-out forwards, gradientMove 1s linear infinite; // Sẽ dùng JS để kiểm soát progress */
-            width: 0%; /* Khởi tạo 0% */
+            animation: loadingProgress 3s ease-out forwards, gradientMove 1s linear infinite;
         }
 
         .loading-text {
@@ -198,7 +190,6 @@
             height: 100%;
             pointer-events: none;
             opacity: 0.1;
-            z-index: 1;
         }
 
         .matrix-column {
@@ -216,7 +207,6 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: 0;
         }
 
         .particle {
@@ -233,7 +223,6 @@
             opacity: 0;
             transform: translateY(50px);
             transition: all 1s ease-out;
-            min-height: 100vh; /* Đảm bảo main content có độ cao phù hợp */
         }
 
         .main-content.visible {
@@ -504,10 +493,6 @@
             line-height: 1.8;
             opacity: 0.9;
         }
-        
-        .about-text p {
-            margin-bottom: 1rem;
-        }
 
         .about-image {
             width: 300px;
@@ -520,7 +505,6 @@
             font-size: 4rem;
             margin: 0 auto;
             box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Thêm để icon nổi bật hơn */
         }
 
         /* Projects Section */
@@ -539,8 +523,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
         }
 
         .project-card:hover {
@@ -560,14 +542,12 @@
             opacity: 0.8;
             line-height: 1.6;
             margin-bottom: 1.5rem;
-            flex-grow: 1; /* Quan trọng để giữ chiều cao card đồng đều */
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 1.5rem;
         }
 
         .tech-tag {
@@ -576,33 +556,6 @@
             border-radius: 15px;
             font-size: 0.9rem;
             color: #667eea;
-        }
-        
-        /* FIX: Thêm style cho project-link */
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: #4ecdc4;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            margin-top: auto; /* Đẩy xuống cuối card */
-        }
-
-        .project-link:hover {
-            color: #ff6b6b;
-        }
-
-        .project-icon {
-            width: 20px;
-            height: 20px;
-            filter: grayscale(100%);
-            transition: filter 0.3s ease;
-        }
-        
-        .project-link:hover .project-icon {
-            filter: grayscale(0%);
         }
 
         /* Skills Section */
@@ -635,7 +588,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            display: inline-block; /* Quan trọng cho gradient text hoạt động */
         }
 
         .skill-name {
@@ -676,24 +628,10 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .contact-link i {
-            font-size: 1.2rem;
-            color: #667eea;
-        }
-
         .contact-link:hover {
             background: rgba(102, 126, 234, 0.2);
             transform: translateY(-3px);
             border-color: rgba(102, 126, 234, 0.3);
-        }
-        
-        /* Footer */
-        .footer {
-            padding: 2rem 1rem;
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.6;
-            margin-top: 4rem;
         }
 
         /* Animations */
@@ -863,14 +801,9 @@
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
-            .about-image {
-                margin-top: 2rem;
-            }
 
             .nav-links {
-                /* Cân nhắc thay thế bằng Hamburger Menu, nhưng tạm thời ẩn đi theo code gốc */
-                display: none; 
+                display: none;
             }
 
             .contact-links {
@@ -889,23 +822,26 @@
     </style>
 </head>
 <body>
+    <!-- Intro Screen -->
     <div class="intro-screen" id="introScreen">
         <div class="matrix-rain" id="matrixRain"></div>
         <div class="particles" id="particles"></div>
         
         <div class="intro-container">
-            <h1 class="intro-logo" id="typingText"></h1> 
+            <h1 class="intro-logo" id="typingText"></h1>
             <p class="intro-tagline">Full-Stack Developer & Creative Technologist</p>
             <button class="enter-btn" onclick="enterPortfolio()" id="enterBtn" style="display: none;">Enter Portfolio</button>
         </div>
         
         <div class="loading-bar">
-            <div class="loading-progress" id="loadingProgress"></div>
+            <div class="loading-progress"></div>
         </div>
-        <div class="loading-text" id="loadingText">Initializing Portfolio...</div>
+        <div class="loading-text">Initializing Portfolio...</div>
     </div>
 
+    <!-- Main Content -->
     <div class="main-content" id="mainContent">
+        <!-- Navigation -->
         <nav class="navbar">
             <div class="nav-container">
                 <div class="logo">Stain</div>
@@ -914,11 +850,13 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#skills">Skills</a></li>
+                    <li><a href="#donate">Donate</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
         </nav>
 
+        <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="floating-element floating-1"></div>
             <div class="floating-element floating-2"></div>
@@ -937,9 +875,11 @@
             </div>
         </section>
 
+        <!-- Smooth Transition Section -->
         <div class="transition-section"></div>
 
         
+        <!-- About Section -->
         <section class="section" id="about">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
@@ -955,12 +895,12 @@
                 </div>
             </div>
         </section>
-        
-        <hr style="max-width: 80%; margin: 4rem auto; border: 0; border-top: 1px solid rgba(255, 255, 255, 0.1);">
 
+       <!-- Projects Section -->
         <section class="section" id="projects">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
+                <!-- 1. Portfolio Website -->
                 <div class="project-card">
                     <h3 class="project-title">Personal Portfolio Website</h3>
                     <p class="project-description">
@@ -978,6 +918,7 @@
                     </a>
                 </div>
 
+                <!-- 2. MMO Automation Tool -->
                 <div class="project-card">
                     <h3 class="project-title">MMO Automation Tool</h3>
                     <p class="project-description">
@@ -993,6 +934,7 @@
                     </a>
                 </div>
 
+                <!-- 3. VieTranslator Discord Bot -->
                 <div class="project-card">
                     <h3 class="project-title">VieTranslator – Discord Config Bot</h3>
                     <p class="project-description">
@@ -1009,6 +951,7 @@
                     </a>
                 </div>
 
+                <!-- 4. AI-Powered Tool -->
                 <div class="project-card">
                     <h3 class="project-title">AI-Powered Tool</h3>
                     <p class="project-description">
@@ -1028,226 +971,484 @@
             </div>
         </section>
 
-        <hr style="max-width: 80%; margin: 4rem auto; border: 0; border-top: 1px solid rgba(255, 255, 255, 0.1);">
 
-        <section class="section" id="skills"> 
-            <h2 class="section-title">Technical Skills</h2>
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <h2 class="section-title">Skills & Technologies</h2>
             <div class="skills-grid">
                 <div class="skill-item">
-                    <i class="devicon-python-plain colored skill-icon"></i>
-                    <h3 class="skill-name">Python</h3>
-                    <p class="skill-level">Automation, Bot Dev, ML</p>
+                    <div class="skill-icon">⚛️</div>
+                    <h3 class="skill-name">Frontend</h3>
+                    <p class="skill-level">React, Vue.js, Angular</p>
                 </div>
+
                 <div class="skill-item">
-                    <i class="devicon-nodejs-plain colored skill-icon"></i>
-                    <h3 class="skill-name">Node.js / JS</h3>
-                    <p class="skill-level">Full-Stack, Discord Bots</p>
+                    <div class="skill-icon">🔧</div>
+                    <h3 class="skill-name">Backend</h3>
+                    <p class="skill-level">Node.js, Python, Java</p>
                 </div>
+
                 <div class="skill-item">
-                    <i class="devicon-html5-plain colored skill-icon"></i>
-                    <h3 class="skill-name">HTML & CSS</h3>
-                    <p class="skill-level">Responsive Design, Animations</p>
+                    <div class="skill-icon">🗄️</div>
+                    <h3 class="skill-name">Database</h3>
+                    <p class="skill-level">MongoDB, PostgreSQL, MySQL</p>
                 </div>
+
                 <div class="skill-item">
-                    <i class="devicon-docker-plain colored skill-icon"></i>
-                    <h3 class="skill-name">Docker</h3>
-                    <p class="skill-level">Containerization</p>
+                    <div class="skill-icon">🤖</div>
+                    <h3 class="skill-name">Automation</h3>
+                    <p class="skill-level">Python, Selenium, AutoHotkey</p>
                 </div>
+
                 <div class="skill-item">
-                    <i class="devicon-git-plain colored skill-icon"></i>
-                    <h3 class="skill-name">Git/GitHub</h3>
-                    <p class="skill-level">Version Control</p>
+                    <div class="skill-icon">💬</div>
+                    <h3 class="skill-name">Discord Bot</h3>
+                    <p class="skill-level">Node.js, Discord.js, API Integration</p>
                 </div>
+
                 <div class="skill-item">
-                    <i class="devicon-mysql-plain colored skill-icon"></i>
-                    <h3 class="skill-name">MySQL</h3>
-                    <p class="skill-level">Database Management</p>
+                    <div class="skill-icon">🎨</div>
+                    <h3 class="skill-name">Design</h3>
+                    <p class="skill-level">UI/UX, Figma, Adobe XD</p>
                 </div>
             </div>
-        </section> 
+        </section>
 
-        <hr style="max-width: 80%; margin: 4rem auto; border: 0; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-
+        <!-- Contact Section -->
         <section class="section" id="contact">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title">Let's Connect</h2>
             <div class="contact-content">
-                <p class="hero-description" style="margin-bottom: 0;">
-                    I'm currently open to new projects and collaboration opportunities. Feel free to reach out!
-                </p>
+                <p>I'm always open to new opportunities and collaborations. Feel free to reach out if you'd like to work together or just want to say hello!</p>
+                
                 <div class="contact-links">
-                    <a href="mailto:your.email@example.com" class="contact-link">
-                        <i class="fas fa-envelope"></i>
-                        <span>Email Me</span>
-                    </a>
                     <a href="https://github.com/stainmc2102" target="_blank" rel="noopener noreferrer" class="contact-link">
-                        <i class="fab fa-github"></i>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="contact-icon">
                         <span>GitHub</span>
                     </a>
-                    <a href="#" class="contact-link">
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn</span>
+                    <a href="https://facebook.com/damnguyensinhthanh" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook" class="contact-icon">
+                        <span>Facebook</span>
+                    </a>
+                    <a href="mailto:stainmc2102@gmail.com" class="contact-link">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" class="contact-icon">
+                        <span>Gmail</span>
+                    </a>
+                    <a href="https://dsc.gg/hoiquanstain" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discordjs/discordjs-original.svg" alt="Discord" class="contact-icon">
+                        <span>My Discord Guild</span>
                     </a>
                 </div>
             </div>
         </section>
         
-        <section class="section" id="donate" style="display: none;"></section>
+        <!-- Donate Section -->
+<section class="block" id="donate">
+  <div class="section-title">
+    <i class="fa fa-coins"></i> Donate
+  </div>
 
-        <footer class="footer">
-            &copy; 2025 Stain. All rights reserved. | Crafted with 💻 and passion.
-        </footer>
+  <div class="section-body">
+    <p>
+      If you enjoy my projects and want to support me,  
+      you can donate — every cup of coffee helps keep projects alive ☕
+    </p>
+
+    <div class="donate-grid">
+      <!-- ZyPage -->
+      <div class="don-card">
+        <div class="don-title">
+          <i class="fa fa-globe"></i> ZyPage
+        </div>
+        <p>Support via ZyPage (content & services)</p>
+        <a class="don-btn" href="https://zypage.com/stainmc2102" target="_blank" rel="noopener">
+          <i class="fa fa-hand-holding-dollar"></i> Donate via ZyPage
+        </a>
+      </div>
+
+      <!-- PlayerDuo -->
+      <div class="don-card">
+        <div class="don-title">
+          <i class="fa fa-gamepad"></i> PlayerDuo
+        </div>
+        <p>Support via PlayerDuo (content & services)</p>
+        <a class="don-btn" href="https://playerduo.net/25436576" target="_blank" rel="noopener">
+          <i class="fa fa-hand-holding-dollar"></i> PlayerDuo
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <!-- Donate Section -->
+        <section class="section" id="donate">
+            <h2 class="section-title">☕ Support My Work</h2>
+            <div class="donate-content">
+                <p>If you enjoy my projects and want to support me, you can donate — every cup of coffee helps keep projects alive ☕</p>
+                
+                <div class="donate-grid">
+                    <!-- ZyPage -->
+                    <div class="donate-card">
+                        <div class="donate-icon">🌐</div>
+                        <h3 class="donate-title">ZyPage</h3>
+                        <p class="donate-description">Support via ZyPage (content & services)</p>
+                        <a href="https://zypage.com/stainmc2102" target="_blank" rel="noopener noreferrer" class="donate-btn">
+                            <span>💰 Donate via ZyPage</span>
+                        </a>
+                    </div>
+
+                    <!-- PlayerDuo -->
+                    <div class="donate-card">
+                        <div class="donate-icon">🎮</div>
+                        <h3 class="donate-title">PlayerDuo</h3>
+                        <p class="donate-description">Support via PlayerDuo (content & services)</p>
+                        <a href="https://playerduo.net/25436576" target="_blank" rel="noopener noreferrer" class="donate-btn">
+                            <span>💰 Donate via PlayerDuo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
     </div>
 
     <script>
-        const introScreen = document.getElementById('introScreen');
-        const mainContent = document.getElementById('mainContent');
-        const typingTextElement = document.getElementById('typingText');
-        const enterBtn = document.getElementById('enterBtn');
-        const loadingProgress = document.getElementById('loadingProgress');
-        const loadingText = document.getElementById('loadingText');
-        const matrixRainContainer = document.getElementById('matrixRain');
-        const particlesContainer = document.getElementById('particles');
-        const textToType = "Stain";
-        const totalDuration = 3000; // 3 giây loading
-        let progressInterval;
+        // Create particles for intro
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 80;
 
-        // --- PARTICLE EFFECT (Hạt) ---
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            const size = Math.random() * 5 + 2; // Kích thước từ 2px đến 7px
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.top = `${Math.random() * 100}%`;
-            
-            // Randomize animation duration and delay for subtle variations
-            particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
-            particle.style.animationDelay = `-${Math.random() * 5}s`;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                
+                // Random particle sizes
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.8 + 0.2;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
 
-            particlesContainer.appendChild(particle);
+        // Create matrix rain effect
+        function createMatrixRain() {
+            const matrixContainer = document.getElementById('matrixRain');
+            const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const columnCount = Math.floor(window.innerWidth / 20);
+
+            for (let i = 0; i < columnCount; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = (i * 20) + 'px';
+                column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                column.style.animationDelay = Math.random() * 2 + 's';
+                
+                // Create random characters for this column
+                let columnText = '';
+                for (let j = 0; j < 20; j++) {
+                    columnText += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+                }
+                column.innerHTML = columnText;
+                
+                matrixContainer.appendChild(column);
+            }
+        }
+
+        // Enhanced enter portfolio function with cinematic transition
+        function enterPortfolio() {
+            const introScreen = document.getElementById('introScreen');
+            const mainContent = document.getElementById('mainContent');
+            const loadingText = document.querySelector('.loading-text');
             
-            // Remove particle after it finishes animation to manage DOM
+            // Update loading text
+            loadingText.textContent = 'Loading Complete...';
+            
+            // Add dramatic exit animation
             setTimeout(() => {
-                particle.remove();
-            }, (Math.random() * 5 + 5) * 1000);
+                introScreen.style.transform = 'scale(0.8)';
+                introScreen.style.filter = 'blur(10px)';
+                introScreen.classList.add('hidden');
+                
+                // Reveal main content with cinematic effect
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    mainContent.style.transform = 'scale(1)';
+                    mainContent.classList.add('visible');
+                }, 800);
+            }, 500);
         }
 
-        function startParticles() {
-            for (let i = 0; i < 50; i++) {
-                createParticle();
-            }
-            setInterval(createParticle, 500); // Thêm hạt mới định kỳ
-        }
-
-        // --- MATRIX RAIN EFFECT (Mưa Ma Trận) ---
-        const columns = Math.floor(window.innerWidth / 15);
-        const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+{}|:"<>?~`';
-
-        function createMatrixColumn(index) {
-            const column = document.createElement('div');
-            column.className = 'matrix-column';
-            column.style.left = `${index * 15}px`;
-            
-            // Random initial offset and speed
-            const duration = Math.random() * 5 + 5; // 5s đến 10s
-            const delay = -Math.random() * 5; // -5s đến 0s
-            column.style.animationDuration = `${duration}s`;
-            column.style.animationDelay = `${delay}s`;
-
-            const streamLength = Math.floor(Math.random() * 20) + 10;
-            let text = '';
-            for (let i = 0; i < streamLength; i++) {
-                text += characters.charAt(Math.floor(Math.random() * characters.length)) + '<br>';
-            }
-            column.innerHTML = text;
-            matrixRainContainer.appendChild(column);
-        }
-
-        function startMatrixRain() {
-            for (let i = 0; i < columns; i++) {
-                createMatrixColumn(i);
-            }
-        }
-
-        // --- TYPING EFFECT (Đánh máy) ---
-        function typeWriter(text, element, delay = 100) {
-            let i = 0;
-            return new Promise(resolve => {
-                const interval = setInterval(() => {
-                    if (i < text.length) {
-                        element.innerHTML += text.charAt(i);
-                        i++;
-                    } else {
-                        clearInterval(interval);
-                        // Thêm class typing-effect để kích hoạt con trỏ nhấp nháy
-                        element.classList.add('typing-effect'); 
+        // Typing animation function
+        function typeText(element, text, speed = 100) {
+            return new Promise((resolve) => {
+                let i = 0;
+                element.textContent = '';
+                const timer = setInterval(() => {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    if (i >= text.length) {
+                        clearInterval(timer);
                         resolve();
                     }
-                }, delay);
+                }, speed);
             });
         }
-        
-        // --- LOADING PROGRESS BAR ---
-        function startLoading() {
-            let startTime = Date.now();
-            loadingProgress.style.width = '0%';
-            loadingText.textContent = 'Initializing Portfolio...';
 
-            progressInterval = setInterval(() => {
-                const elapsed = Date.now() - startTime;
-                let progress = Math.min(100, (elapsed / totalDuration) * 100);
-                loadingProgress.style.width = `${progress}%`;
-                
-                if (progress >= 100) {
-                    clearInterval(progressInterval);
-                    loadingText.textContent = 'Loading Complete. Ready.';
-                    // Hiển thị nút ENTER sau khi loading xong
-                    setTimeout(() => {
-                        enterBtn.style.display = 'block';
-                    }, 500);
-                }
-            }, 50);
-        }
-
-        // --- ENTRY FUNCTION ---
-        function enterPortfolio() {
-            // Loại bỏ hiệu ứng typing-cursor khỏi logo
-            typingTextElement.classList.remove('typing-effect');
-            
-            // Ẩn màn hình intro với animation
-            introScreen.classList.add('hidden');
-            
-            // Hiển thị nội dung chính sau khi intro screen biến mất
-            setTimeout(() => {
-                mainContent.classList.add('visible');
-                // Cuộn nhẹ lên đầu trang sau khi intro biến mất (nếu cần)
-                window.scrollTo({ top: 0, behavior: 'smooth' }); 
-            }, 1000); 
-        }
-
-        // --- Khởi tạo tất cả ---
-        window.onload = () => {
-            startMatrixRain();
-            startParticles();
-            
-            // Khởi chạy hiệu ứng đánh máy và loading
-            typeWriter(textToType, typingTextElement, 150).then(() => {
-                // Bắt đầu loading sau khi typing xong
-                startLoading();
+        // Erase text function
+        function eraseText(element, speed = 50) {
+            return new Promise((resolve) => {
+                const text = element.textContent;
+                let i = text.length;
+                const timer = setInterval(() => {
+                    element.textContent = text.substring(0, i);
+                    i--;
+                    if (i < 0) {
+                        clearInterval(timer);
+                        resolve();
+                    }
+                }, speed);
             });
-        };
-        
-        // Smooth scroll for navigation links
+        }
+
+        // Start typing sequence
+        async function startTypingSequence() {
+            const typingElement = document.getElementById('typingText');
+            const enterBtn = document.getElementById('enterBtn');
+            
+            // Wait a bit before starting
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Type "Hello World"
+            await typeText(typingElement, 'Hello World', 120);
+            
+            // Wait before erasing
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Erase "Hello World"
+            await eraseText(typingElement, 80);
+            
+            // Wait before typing next text
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Type "I'm Stain."
+            await typeText(typingElement, "I'm Stain.", 120);
+            
+            // Wait before showing enter button
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Show enter button with animation
+            enterBtn.style.display = 'block';
+            enterBtn.style.opacity = '0';
+            enterBtn.style.animation = 'fadeInUp 1s ease-out forwards, pulse 2s ease-in-out 1s infinite';
+        }
+
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
 
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.8)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'all 0.8s ease-out';
+            observer.observe(section);
+        });
+
+        // Dynamic name animation
+        function animateHeroName() {
+            const heroTitle = document.getElementById('heroTitle');
+            const originalName = 'Stain';
+            const variations = [
+                'Stain',
+                'Stain - Developer',
+                'Stain - Coder',
+                'Stain - Creator',
+                'Stain'
+            ];
+            
+            let currentIndex = 0;
+            
+            async function typewriterEffect(element, newText) {
+                const currentText = element.textContent;
+                
+                // Erase current text
+                for (let i = currentText.length; i >= 0; i--) {
+                    element.textContent = currentText.substring(0, i);
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                }
+                
+                // Add glitch effect
+                element.classList.add('glitch-effect');
+                await new Promise(resolve => setTimeout(resolve, 300));
+                element.classList.remove('glitch-effect');
+                
+                // Type new text
+                for (let i = 0; i <= newText.length; i++) {
+                    element.textContent = newText.substring(0, i);
+                    await new Promise(resolve => setTimeout(resolve, 80));
+                }
+            }
+            
+            setInterval(async () => {
+                currentIndex = (currentIndex + 1) % variations.length;
+                await typewriterEffect(heroTitle, variations[currentIndex]);
+            }, 8000);
+        }
+
+        // Add scroll-triggered animations
+        function addScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.project-card, .skill-item');
+            
+            animatedElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(50px)';
+                element.style.transition = `all 0.6s ease-out ${index * 0.1}s`;
+            });
+            
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animations = ['slideInLeft', 'slideInRight', 'zoomIn', 'flipIn'];
+                        const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+                        
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.animation = `${randomAnimation} 0.8s ease-out forwards`;
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                scrollObserver.observe(element);
+            });
+        }
+
+        // Mouse trail effect
+        function createMouseTrail() {
+            const trail = [];
+            const trailLength = 20;
+            
+            document.addEventListener('mousemove', (e) => {
+                trail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+                
+                if (trail.length > trailLength) {
+                    trail.shift();
+                }
+                
+                // Remove old trail elements
+                document.querySelectorAll('.mouse-trail').forEach(el => {
+                    if (Date.now() - parseInt(el.dataset.time) > 1000) {
+                        el.remove();
+                    }
+                });
+                
+                // Create new trail element
+                const trailElement = document.createElement('div');
+                trailElement.className = 'mouse-trail';
+                trailElement.dataset.time = Date.now();
+                trailElement.style.cssText = `
+                    position: fixed;
+                    left: ${e.clientX}px;
+                    top: ${e.clientY}px;
+                    width: 6px;
+                    height: 6px;
+                    background: radial-gradient(circle, rgba(102, 126, 234, 0.8), transparent);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: trailFade 1s ease-out forwards;
+                `;
+                
+                document.body.appendChild(trailElement);
+            });
+            
+            // Add trail fade animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes trailFade {
+                    0% { opacity: 1; transform: scale(1); }
+                    100% { opacity: 0; transform: scale(0.3); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Initialize intro effects
+        createParticles();
+        createMatrixRain();
+        startTypingSequence();
+        
+        // Initialize new effects after main content loads
+        setTimeout(() => {
+            animateHeroName();
+            addScrollAnimations();
+            createMouseTrail();
+        }, 5000);
+
+        // Add hover effects to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add parallax effect to floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = scrolled * 0.5;
+            
+            document.querySelectorAll('.floating-element').forEach((element, index) => {
+                const speed = (index + 1) * 0.2;
+                element.style.transform = `translateY(${parallax * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99180813f4a9ddc1',t:'MTc2MDk1ODIzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
