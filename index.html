@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stain - Portfolio</title>
+    <title>Dam Nguyen Sinh Thanh - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -147,6 +147,7 @@
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
+
         /* Loading Animation */
         .loading-bar {
             position: absolute;
@@ -523,6 +524,8 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -542,12 +545,14 @@
             opacity: 0.8;
             line-height: 1.6;
             margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .tech-tag {
@@ -556,6 +561,35 @@
             border-radius: 15px;
             font-size: 0.9rem;
             color: #667eea;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            align-self: flex-start;
+        }
+
+        .project-link:hover {
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-icon {
+            width: 20px;
+            height: 20px;
+            filter: invert(1);
         }
 
         /* Skills Section */
@@ -600,6 +634,80 @@
             opacity: 0.7;
         }
 
+        /* Donate Section */
+        .donate-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .donate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .donate-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .donate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .donate-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .donate-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .donate-description {
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .donate-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .donate-btn:hover {
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
         /* Contact Section */
         .contact-content {
             text-align: center;
@@ -632,6 +740,18 @@
             background: rgba(102, 126, 234, 0.2);
             transform: translateY(-3px);
             border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            filter: invert(1);
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            filter: invert(1);
         }
 
         /* Animations */
@@ -811,6 +931,10 @@
                 align-items: center;
             }
 
+            .donate-grid {
+                grid-template-columns: 1fr;
+            }
+
             .projects-grid {
                 grid-template-columns: 1fr;
             }
@@ -829,7 +953,7 @@
         
         <div class="intro-container">
             <h1 class="intro-logo" id="typingText"></h1>
-            <p class="intro-tagline">Full-Stack Developer & Creative Technologist</p>
+            <p class="intro-tagline">Full-Stack Developer & Creative Technology Expert</p>
             <button class="enter-btn" onclick="enterPortfolio()" id="enterBtn" style="display: none;">Enter Portfolio</button>
         </div>
         
@@ -844,7 +968,7 @@
         <!-- Navigation -->
         <nav class="navbar">
             <div class="nav-container">
-                <div class="logo">Stain</div>
+                <div class="logo">ĐNST</div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -865,10 +989,10 @@
             <div class="floating-element floating-5"></div>
             
             <div class="hero-content">
-                <h1 class="hero-title" id="heroTitle">Stain</h1>
-                <p class="hero-subtitle">Full-Stack Developer & Creative Technologist</p>
+                <h1 class="hero-title" id="heroTitle">Dam Nguyen Sinh Thanh</h1>
+                <p class="hero-subtitle">Full-Stack Developer & Creative Technology Expert</p>
                 <p class="hero-description">
-                    Crafting digital experiences with modern technologies and creative vision. 
+                    Creating digital experiences with modern technology and creative vision. 
                     Passionate about building innovative solutions that bridge design and functionality.
                 </p>
                 <a href="#projects" class="cta-button">View My Work</a>
@@ -878,17 +1002,16 @@
         <!-- Smooth Transition Section -->
         <div class="transition-section"></div>
 
-        
         <!-- About Section -->
         <section class="section" id="about">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Hello! I'm <strong>Stain</strong> — a developer passionate about building automation systems, Discord bots, useful tools, and Minecraft servers. I love creating digital solutions that are both efficient and enjoyable to use.</p>
+                    <p>Hello! I'm <strong>Dam Nguyen Sinh Thanh</strong> — a developer passionate about building automation systems, Discord bots, useful tools, and Minecraft servers. I love creating digital solutions that are both effective and enjoyable to use.</p>
                     
-                    <p>My focus lies in <b>automation workflows, bot development, and full-stack web applications</b>. I enjoy tackling challenges that require creativity and technical precision — turning ideas into real, functional products.</p>
+                    <p>I focus on <b>automation workflows, bot development, and full-stack web applications</b>. I enjoy solving challenges that require creativity and technical precision — turning ideas into real, functional products.</p>
                     
-                    <p>Outside of coding, I often experiment with new technologies, contribute to open-source projects, and design tools that make everyday tasks smoother for developers and players alike.</p>
+                    <p>Beyond coding, I regularly experiment with new technologies, contribute to open-source projects, and design tools that make daily workflows smoother for developers and gamers alike.</p>
                 </div>
                 <div class="about-image">
                     👨‍💻
@@ -896,7 +1019,7 @@
             </div>
         </section>
 
-       <!-- Projects Section -->
+        <!-- Projects Section -->
         <section class="section" id="projects">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
@@ -971,7 +1094,6 @@
             </div>
         </section>
 
-
         <!-- Skills Section -->
         <section class="section" id="skills">
             <h2 class="section-title">Skills & Technologies</h2>
@@ -1014,71 +1136,6 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section class="section" id="contact">
-            <h2 class="section-title">Let's Connect</h2>
-            <div class="contact-content">
-                <p>I'm always open to new opportunities and collaborations. Feel free to reach out if you'd like to work together or just want to say hello!</p>
-                
-                <div class="contact-links">
-                    <a href="https://github.com/stainmc2102" target="_blank" rel="noopener noreferrer" class="contact-link">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="contact-icon">
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://facebook.com/damnguyensinhthanh" target="_blank" rel="noopener noreferrer" class="contact-link">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook" class="contact-icon">
-                        <span>Facebook</span>
-                    </a>
-                    <a href="mailto:stainmc2102@gmail.com" class="contact-link">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" class="contact-icon">
-                        <span>Gmail</span>
-                    </a>
-                    <a href="https://dsc.gg/hoiquanstain" target="_blank" rel="noopener noreferrer" class="contact-link">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discordjs/discordjs-original.svg" alt="Discord" class="contact-icon">
-                        <span>My Discord Guild</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Donate Section -->
-<section class="block" id="donate">
-  <div class="section-title">
-    <i class="fa fa-coins"></i> Donate
-  </div>
-
-  <div class="section-body">
-    <p>
-      If you enjoy my projects and want to support me,  
-      you can donate — every cup of coffee helps keep projects alive ☕
-    </p>
-
-    <div class="donate-grid">
-      <!-- ZyPage -->
-      <div class="don-card">
-        <div class="don-title">
-          <i class="fa fa-globe"></i> ZyPage
-        </div>
-        <p>Support via ZyPage (content & services)</p>
-        <a class="don-btn" href="https://zypage.com/stainmc2102" target="_blank" rel="noopener">
-          <i class="fa fa-hand-holding-dollar"></i> Donate via ZyPage
-        </a>
-      </div>
-
-      <!-- PlayerDuo -->
-      <div class="don-card">
-        <div class="don-title">
-          <i class="fa fa-gamepad"></i> PlayerDuo
-        </div>
-        <p>Support via PlayerDuo (content & services)</p>
-        <a class="don-btn" href="https://playerduo.net/25436576" target="_blank" rel="noopener">
-          <i class="fa fa-hand-holding-dollar"></i> PlayerDuo
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
         <!-- Donate Section -->
         <section class="section" id="donate">
             <h2 class="section-title">☕ Support My Work</h2>
@@ -1109,7 +1166,32 @@
             </div>
         </section>
 
-
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-content">
+                <p>I'm always open to new opportunities and collaborations. Feel free to reach out if you'd like to work together or just want to say hello!</p>
+                
+                <div class="contact-links">
+                    <a href="https://github.com/stainmc2102" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="contact-icon">
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://facebook.com/damnguyensinhthanh" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook" class="contact-icon">
+                        <span>Facebook</span>
+                    </a>
+                    <a href="mailto:stainmc2102@gmail.com" class="contact-link">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" class="contact-icon">
+                        <span>Gmail</span>
+                    </a>
+                    <a href="https://dsc.gg/hoiquanstain" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discordjs/discordjs-original.svg" alt="Discord" class="contact-icon">
+                        <span>My Discord Guild</span>
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
@@ -1169,7 +1251,7 @@
             const loadingText = document.querySelector('.loading-text');
             
             // Update loading text
-            loadingText.textContent = 'Loading Complete...';
+            loadingText.textContent = 'Loading complete...';
             
             // Add dramatic exit animation
             setTimeout(() => {
@@ -1300,13 +1382,13 @@
         // Dynamic name animation
         function animateHeroName() {
             const heroTitle = document.getElementById('heroTitle');
-            const originalName = 'Stain';
+            const originalName = 'Dam Nguyen Sinh Thanh';
             const variations = [
-                'Stain',
-                'Stain - Developer',
-                'Stain - Coder',
-                'Stain - Creator',
-                'Stain'
+                'Dam Nguyen Sinh Thanh',
+                'Dam Nguyen Sinh Thanh - Developer',
+                'Dam Nguyen Sinh Thanh - Programmer',
+                'Dam Nguyen Sinh Thanh - Creator',
+                'Dam Nguyen Sinh Thanh'
             ];
             
             let currentIndex = 0;
@@ -1450,5 +1532,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99180813f4a9ddc1',t:'MTc2MDk1ODIzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9918f865850fcb79',t:'MTc2MDk2ODA4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
