@@ -121,6 +121,8 @@
             overflow: hidden;
             text-transform: uppercase;
             letter-spacing: 1px;
+            display: block;
+            margin: 0 auto;
         }
 
         .enter-btn::before {
@@ -145,7 +147,6 @@
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
-
         /* Loading Animation */
         .loading-bar {
             position: absolute;
@@ -849,6 +850,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#skills">Skills</a></li>
+                    <li><a href="#donate">Donate</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -876,98 +878,98 @@
         <!-- Smooth Transition Section -->
         <div class="transition-section"></div>
 
+        
         <!-- About Section -->
-        <section id="about" class="about">
-  <div class="about-container">
-    <h2>About Me</h2>
+        <section class="section" id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm <strong>Stain</strong> — a developer passionate about building automation systems, Discord bots, useful tools, and Minecraft servers. I love creating digital solutions that are both efficient and enjoyable to use.</p>
+                    
+                    <p>My focus lies in <b>automation workflows, bot development, and full-stack web applications</b>. I enjoy tackling challenges that require creativity and technical precision — turning ideas into real, functional products.</p>
+                    
+                    <p>Outside of coding, I often experiment with new technologies, contribute to open-source projects, and design tools that make everyday tasks smoother for developers and players alike.</p>
+                </div>
+                <div class="about-image">
+                    👨‍💻
+                </div>
+            </div>
+        </section>
 
-    <p>Hello! I'm <strong>Đàm Nguyến Sinh Thành</strong> — a developer passionate about building automation systems, Discord bots, useful tools, and Minecraft servers.  
-    I love creating digital solutions that are both efficient and enjoyable to use.</p>
+       <!-- Projects Section -->
+        <section class="section" id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- 1. Portfolio Website -->
+                <div class="project-card">
+                    <h3 class="project-title">Personal Portfolio Website</h3>
+                    <p class="project-description">
+                        A clean and modern personal portfolio website built using <b>HTML, CSS, and JavaScript</b>.
+                        It showcases my projects, skills, and contact information with a responsive layout and smooth animations.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/stainmc2102/Portfolio" target="_blank" rel="noopener noreferrer" class="project-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="project-icon">
+                        <span>View on GitHub</span>
+                    </a>
+                </div>
 
-    <p>My focus lies in <b>automation workflows, bot development, and full-stack web applications</b>.  
-    I enjoy tackling challenges that require creativity and technical precision — turning ideas into real, functional products.</p>
+                <!-- 2. MMO Automation Tool -->
+                <div class="project-card">
+                    <h3 class="project-title">MMO Automation Tool</h3>
+                    <p class="project-description">
+                        A powerful automation tool for MMO games, written in <b>Python</b>.
+                        It automates repetitive in-game actions efficiently with smart algorithms and custom configurations.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                    </div>
+                    <a href="https://github.com/stainmc2102" target="_blank" rel="noopener noreferrer" class="project-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="project-icon">
+                        <span>View on GitHub</span>
+                    </a>
+                </div>
 
-    <p>Outside of coding, I often experiment with new technologies, contribute to open-source projects, and design tools that make everyday tasks smoother for developers and players alike.</p>
+                <!-- 3. VieTranslator Discord Bot -->
+                <div class="project-card">
+                    <h3 class="project-title">VieTranslator – Discord Config Bot</h3>
+                    <p class="project-description">
+                        A <b>Discord bot</b> built using <b>Node.js</b>, designed for managing multilingual servers with auto translation,
+                        configuration commands, and real-time interaction.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Discord.js</span>
+                    </div>
+                    <a href="https://github.com/stainmc2102/VieTranslator-Discord-Bot" target="_blank" rel="noopener noreferrer" class="project-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="project-icon">
+                        <span>View on GitHub</span>
+                    </a>
+                </div>
 
-  
-  </div>
-</section>
-
-    <!-- Projects Section -->
-<section class="section" id="projects">
-  <h2 class="section-title">Featured Projects</h2>
-
-  <div class="projects-grid">
-    <!-- 1. Portfolio Website -->
-    <div class="project-card">
-      <h3 class="project-title">Personal Portfolio Website</h3>
-      <p class="project-description">
-        A clean and modern personal portfolio website built using <b>HTML, CSS, and JavaScript</b>.
-        It showcases my projects, skills, and contact information with a responsive layout and smooth animations.
-      </p>
-      <div class="project-tech">
-        <span class="tech-tag">HTML</span>
-        <span class="tech-tag">CSS</span>
-        <span class="tech-tag">JavaScript</span>
-      </div>
-      <a href="https://github.com/stainmc2102/Portfolio" target="_blank" rel="noopener noreferrer" class="project-link">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="project-icon">
-        <span>View on GitHub</span>
-      </a>
-    </div>
-
-    <!-- 2. MMO Automation Tool -->
-    <div class="project-card">
-      <h3 class="project-title">MMO Automation Tool</h3>
-      <p class="project-description">
-        A powerful automation tool for MMO games, written in <b>Python</b>.
-        It automates repetitive in-game actions efficiently with smart algorithms and custom configurations.
-      </p>
-      <div class="project-tech">
-        <span class="tech-tag">Python</span>
-      </div>
-      <a href="https://github.com/stainmc2102" target="_blank" rel="noopener noreferrer" class="project-link">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="project-icon">
-        <span>View on GitHub</span>
-      </a>
-    </div>
-
-    <!-- 3. VieTranslator Discord Bot -->
-    <div class="project-card">
-      <h3 class="project-title">VieTranslator – Discord Config Bot</h3>
-      <p class="project-description">
-        A <b>Discord bot</b> built using <b>Node.js</b>, designed for managing multilingual servers with auto translation,
-        configuration commands, and real-time interaction.
-      </p>
-      <div class="project-tech">
-        <span class="tech-tag">Node.js</span>
-        <span class="tech-tag">Discord.js</span>
-      </div>
-      <a href="https://github.com/stainmc2102/VieTranslator-Discord-Bot" target="_blank" rel="noopener noreferrer" class="project-link">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="project-icon">
-        <span>View on GitHub</span>
-      </a>
-    </div>
-
-    <!-- 4. AI-Powered Tool -->
-    <div class="project-card">
-      <h3 class="project-title">AI-Powered Tool</h3>
-      <p class="project-description">
-        An intelligent application leveraging <b>machine learning</b> to provide automated solutions and insights.
-      </p>
-      <div class="project-tech">
-        <span class="tech-tag">Python</span>
-        <span class="tech-tag">TensorFlow</span>
-        <span class="tech-tag">Flask</span>
-        <span class="tech-tag">Docker</span>
-      </div>
-      <a href="https://github.com/stainmc2102/Owofarm" target="_blank" rel="noopener noreferrer" class="project-link">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="project-icon">
-        <span>View on GitHub</span>
-      </a>
-    </div>
-  </div>
-</section>
+                <!-- 4. AI-Powered Tool -->
+                <div class="project-card">
+                    <h3 class="project-title">AI-Powered Tool</h3>
+                    <p class="project-description">
+                        An intelligent application leveraging <b>machine learning</b> to provide automated solutions and insights.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                    <a href="https://github.com/stainmc2102/Owofarm" target="_blank" rel="noopener noreferrer" class="project-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="project-icon">
+                        <span>View on GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
 
         <!-- Skills Section -->
@@ -992,17 +994,17 @@
                     <p class="skill-level">MongoDB, PostgreSQL, MySQL</p>
                 </div>
 
-               <div class="skill-item">
+                <div class="skill-item">
                     <div class="skill-icon">🤖</div>
                     <h3 class="skill-name">Automation</h3>
                     <p class="skill-level">Python, Selenium, AutoHotkey</p>
-               </div>
+                </div>
 
-               <div class="skill-item">
+                <div class="skill-item">
                     <div class="skill-icon">💬</div>
                     <h3 class="skill-name">Discord Bot</h3>
                     <p class="skill-level">Node.js, Discord.js, API Integration</p>
-               </div>
+                </div>
 
                 <div class="skill-item">
                     <div class="skill-icon">🎨</div>
@@ -1013,39 +1015,32 @@
         </section>
 
         <!-- Contact Section -->
-<section class="section" id="contact">
-  <h2 class="section-title">Let's Connect</h2>
-  <div class="contact-content">
-    <p>
-      I'm always open to new opportunities and collaborations.  
-      Feel free to reach out if you'd like to work together or just want to say hello!
-    </p>
-
-    <div class="contact-links">
-      <a href="https://github.com/stainmc2102" target="_blank" rel="noopener noreferrer" class="contact-link">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="contact-icon">
-        <span>GitHub</span>
-      </a>
-
-      <a href="https://facebook.com/damnguyensinhthanh" target="_blank" rel="noopener noreferrer" class="contact-link">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook" class="contact-icon">
-        <span>Facebook</span>
-      </a>
-
-      <a href="mailto:stainmc2102@gmail.com" class="contact-link">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" class="contact-icon">
-        <span>Gmail</span>
-      </a>
-
-      <a href="https://dsc.gg/hoiquanstain" target="_blank" rel="noopener noreferrer" class="contact-link">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discordjs/discordjs-original.svg" alt="Discord" class="contact-icon">
-        <span>My Discord Guild</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-
+        <section class="section" id="contact">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-content">
+                <p>I'm always open to new opportunities and collaborations. Feel free to reach out if you'd like to work together or just want to say hello!</p>
+                
+                <div class="contact-links">
+                    <a href="https://github.com/stainmc2102" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="contact-icon">
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://facebook.com/damnguyensinhthanh" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook" class="contact-icon">
+                        <span>Facebook</span>
+                    </a>
+                    <a href="mailto:stainmc2102@gmail.com" class="contact-link">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Gmail" class="contact-icon">
+                        <span>Gmail</span>
+                    </a>
+                    <a href="https://dsc.gg/hoiquanstain" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discordjs/discordjs-original.svg" alt="Discord" class="contact-icon">
+                        <span>My Discord Guild</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
         <!-- Donate Section -->
 <section class="block" id="donate">
   <div class="section-title">
@@ -1083,6 +1078,36 @@
     </div>
   </div>
 </section>
+
+        <!-- Donate Section -->
+        <section class="section" id="donate">
+            <h2 class="section-title">☕ Support My Work</h2>
+            <div class="donate-content">
+                <p>If you enjoy my projects and want to support me, you can donate — every cup of coffee helps keep projects alive ☕</p>
+                
+                <div class="donate-grid">
+                    <!-- ZyPage -->
+                    <div class="donate-card">
+                        <div class="donate-icon">🌐</div>
+                        <h3 class="donate-title">ZyPage</h3>
+                        <p class="donate-description">Support via ZyPage (content & services)</p>
+                        <a href="https://zypage.com/stainmc2102" target="_blank" rel="noopener noreferrer" class="donate-btn">
+                            <span>💰 Donate via ZyPage</span>
+                        </a>
+                    </div>
+
+                    <!-- PlayerDuo -->
+                    <div class="donate-card">
+                        <div class="donate-icon">🎮</div>
+                        <h3 class="donate-title">PlayerDuo</h3>
+                        <p class="donate-description">Support via PlayerDuo (content & services)</p>
+                        <a href="https://playerduo.net/25436576" target="_blank" rel="noopener noreferrer" class="donate-btn">
+                            <span>💰 Donate via PlayerDuo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
     </div>
