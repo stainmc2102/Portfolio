@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đàm Nguyến Sinh Thành - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #0c0f15 100%);
+            color: #ffffff;
+        }
+
+        /* Intro Screen */
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: all 2s cubic-bezier(0.77, 0, 0.175, 1);
+            overflow: hidden;
+        }
+
+        .intro-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(102, 126, 234, 0.1) 50%, transparent 70%);
+            animation: scanline 3s linear infinite;
+        }
+
+        .intro-screen.hidden {
+            opacity: 0;
+            transform: scale(1.2);
+            pointer-events: none;
+        }
+
+        .intro-container {
+            position: relative;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .intro-logo {
+            font-size: 5rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            white-space: nowrap;
+            border-right: 3px solid rgba(255, 255, 255, 0.8);
+            animation: typing-cursor 1s infinite;
+        }
+
+        .intro-logo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+            transform: translateX(-100%);
+            animation: shimmer 2s ease-in-out 3.5s infinite;
+        }
+
+        .intro-tagline {
+            font-size: 1.4rem;
+            opacity: 0;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s ease-out 2s both, glow 2s ease-in-out 4s infinite alternate;
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .enter-btn {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border: 2px solid rgba(102, 126, 234, 0.5);
+            border-radius: 50px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 3s both, pulse 2s ease-in-out 5s infinite;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .enter-btn:hover::before {
+            left: 100%;
+        }
+
+        .enter-btn:hover {
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
+            border-color: rgba(102, 126, 234, 0.8);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Loading Animation */
+        .loading-bar {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.5s both;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+            background-size: 200% 100%;
+            border-radius: 2px;
+            animation: loadingProgress 3s ease-out forwards, gradientMove 1s linear infinite;
+        }
+
+        .loading-text {
+            position: absolute;
+            bottom: 6%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 1s both;
+            letter-spacing: 2px;
+        }
+
+        /* Matrix Rain Effect */
+        .matrix-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #667eea;
+            animation: matrixFall linear infinite;
+        }
+
+        /* Particle Background */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Main Content */
+        .main-content {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .main-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 2rem;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow: hidden;
+        }
+
+        /* Smooth transition section between hero and about */
+        .transition-section {
+            height: 200px;
+            background: linear-gradient(180deg, 
+                #16213e 0%, 
+                #1a1a2e 20%, 
+                #0f1419 40%, 
+                #0c0f15 60%, 
+                #0a0a0a 100%);
+            position: relative;
+        }
+
+        .transition-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, 
+                rgba(102, 126, 234, 0.05) 0%, 
+                rgba(118, 75, 162, 0.03) 50%, 
+                transparent 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: nameShimmer 3s ease-in-out 2s infinite;
+        }
+
+        .hero-title.glitch-effect {
+            animation: gradientShift 4s ease-in-out infinite, textGlitch 0.3s ease-in-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            backdrop-filter: blur(10px);
+            animation: float 8s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .floating-element:hover {
+            transform: scale(1.2) rotate(180deg);
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .floating-1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation: float 8s ease-in-out infinite, pulse 4s ease-in-out infinite;
+            animation-delay: 0s;
+        }
+
+        .floating-2 {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 15%;
+            animation: float 8s ease-in-out infinite, rotate 12s linear infinite;
+            animation-delay: 2s;
+        }
+
+        .floating-3 {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation: float 8s ease-in-out infinite, bounce 6s ease-in-out infinite;
+            animation-delay: 4s;
+        }
+
+        /* Additional floating elements */
+        .floating-4 {
+            width: 60px;
+            height: 60px;
+            top: 30%;
+            right: 30%;
+            animation: float 10s ease-in-out infinite, fadeInOut 8s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .floating-5 {
+            width: 120px;
+            height: 120px;
+            bottom: 40%;
+            right: 10%;
+            animation: float 9s ease-in-out infinite, morphing 7s ease-in-out infinite;
+            animation-delay: 3s;
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .about-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .project-description {
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: #667eea;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-level {
+            opacity: 0.7;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-link:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        /* Animations */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            10% { transform: translate(-2px, 2px); }
+            20% { transform: translate(-2px, -2px); }
+            30% { transform: translate(2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            50% { transform: translate(-2px, 2px); }
+            60% { transform: translate(-2px, -2px); }
+            70% { transform: translate(2px, 2px); }
+            80% { transform: translate(-2px, -2px); }
+            90% { transform: translate(2px, 2px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            100% { text-shadow: 0 0 30px rgba(102, 126, 234, 0.8), 0 0 40px rgba(102, 126, 234, 0.6); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes scanline {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes loadingProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        @keyframes matrixFall {
+            0% { transform: translateY(-100vh); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        @keyframes typing-cursor {
+            0%, 50% { border-color: rgba(255, 255, 255, 0.8); }
+            51%, 100% { border-color: transparent; }
+        }
+
+        @keyframes nameShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes textGlitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes morphing {
+            0%, 100% { border-radius: 50%; transform: scale(1); }
+            25% { border-radius: 20%; transform: scale(1.2); }
+            50% { border-radius: 0%; transform: scale(0.8); }
+            75% { border-radius: 30%; transform: scale(1.1); }
+        }
+
+        @keyframes slideInLeft {
+            0% { transform: translateX(-100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes flipIn {
+            0% { transform: rotateY(-90deg); opacity: 0; }
+            100% { transform: rotateY(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .intro-logo {
+                font-size: 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Intro Screen -->
+    <div class="intro-screen" id="introScreen">
+        <div class="matrix-rain" id="matrixRain"></div>
+        <div class="particles" id="particles"></div>
+        
+        <div class="intro-container">
+            <h1 class="intro-logo" id="typingText"></h1>
+            <p class="intro-tagline">Full-Stack Developer & Creative Technologist</p>
+            <button class="enter-btn" onclick="enterPortfolio()" id="enterBtn" style="display: none;">Enter Portfolio</button>
+        </div>
+        
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+        <div class="loading-text">Initializing Portfolio...</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">ĐNST</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="floating-element floating-1"></div>
+            <div class="floating-element floating-2"></div>
+            <div class="floating-element floating-3"></div>
+            <div class="floating-element floating-4"></div>
+            <div class="floating-element floating-5"></div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title" id="heroTitle">Đàm Nguyến Sinh Thành</h1>
+                <p class="hero-subtitle">Full-Stack Developer & Creative Technologist</p>
+                <p class="hero-description">
+                    Crafting digital experiences with modern technologies and creative vision. 
+                    Passionate about building innovative solutions that bridge design and functionality.
+                </p>
+                <a href="#projects" class="cta-button">View My Work</a>
+            </div>
+        </section>
+
+        <!-- Smooth Transition Section -->
+        <div class="transition-section"></div>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Đàm Nguyến Sinh Thành, a passionate full-stack developer with a love for creating beautiful and functional digital experiences. I specialize in modern web technologies and enjoy working on projects that challenge me to grow and learn.</p>
+                    
+                    <p>My journey in programming started with curiosity and has evolved into a deep passion for crafting elegant solutions to complex problems. I believe in writing clean, maintainable code and creating user experiences that are both intuitive and delightful.</p>
+                    
+                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.</p>
+                </div>
+                <div class="about-image">
+                    👨‍💻
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section" id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3 class="project-title">Modern Web Application</h3>
+                    <p class="project-description">
+                        A full-stack web application built with modern technologies, featuring responsive design and real-time functionality.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Socket.io</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="project-title">E-Commerce Platform</h3>
+                    <p class="project-description">
+                        A comprehensive e-commerce solution with payment integration, inventory management, and admin dashboard.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Stripe</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="project-title">Mobile App Development</h3>
+                    <p class="project-description">
+                        Cross-platform mobile application with native performance and beautiful UI/UX design.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Redux</span>
+                        <span class="tech-tag">TypeScript</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="project-title">AI-Powered Tool</h3>
+                    <p class="project-description">
+                        An intelligent application leveraging machine learning to provide automated solutions and insights.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon">⚛️</div>
+                    <h3 class="skill-name">Frontend</h3>
+                    <p class="skill-level">React, Vue.js, Angular</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-icon">🔧</div>
+                    <h3 class="skill-name">Backend</h3>
+                    <p class="skill-level">Node.js, Python, Java</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-icon">🗄️</div>
+                    <h3 class="skill-name">Database</h3>
+                    <p class="skill-level">MongoDB, PostgreSQL, MySQL</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-icon">☁️</div>
+                    <h3 class="skill-name">Cloud</h3>
+                    <p class="skill-level">AWS, Google Cloud, Azure</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-icon">📱</div>
+                    <h3 class="skill-name">Mobile</h3>
+                    <p class="skill-level">React Native, Flutter</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-icon">🎨</div>
+                    <h3 class="skill-name">Design</h3>
+                    <p class="skill-level">UI/UX, Figma, Adobe XD</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-content">
+                <p>I'm always interested in new opportunities and collaborations. Feel free to reach out if you'd like to work together or just want to say hello!</p>
+                
+                <div class="contact-links">
+                    <a href="https://github.com/stainmc2102" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <span>🐙</span>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="mailto:contact@example.com" class="contact-link">
+                        <span>📧</span>
+                        <span>Email</span>
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <span>💼</span>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Create particles for intro
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 80;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                
+                // Random particle sizes
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.8 + 0.2;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Create matrix rain effect
+        function createMatrixRain() {
+            const matrixContainer = document.getElementById('matrixRain');
+            const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const columnCount = Math.floor(window.innerWidth / 20);
+
+            for (let i = 0; i < columnCount; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = (i * 20) + 'px';
+                column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                column.style.animationDelay = Math.random() * 2 + 's';
+                
+                // Create random characters for this column
+                let columnText = '';
+                for (let j = 0; j < 20; j++) {
+                    columnText += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+                }
+                column.innerHTML = columnText;
+                
+                matrixContainer.appendChild(column);
+            }
+        }
+
+        // Enhanced enter portfolio function with cinematic transition
+        function enterPortfolio() {
+            const introScreen = document.getElementById('introScreen');
+            const mainContent = document.getElementById('mainContent');
+            const loadingText = document.querySelector('.loading-text');
+            
+            // Update loading text
+            loadingText.textContent = 'Loading Complete...';
+            
+            // Add dramatic exit animation
+            setTimeout(() => {
+                introScreen.style.transform = 'scale(0.8)';
+                introScreen.style.filter = 'blur(10px)';
+                introScreen.classList.add('hidden');
+                
+                // Reveal main content with cinematic effect
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    mainContent.style.transform = 'scale(1)';
+                    mainContent.classList.add('visible');
+                }, 800);
+            }, 500);
+        }
+
+        // Typing animation function
+        function typeText(element, text, speed = 100) {
+            return new Promise((resolve) => {
+                let i = 0;
+                element.textContent = '';
+                const timer = setInterval(() => {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    if (i >= text.length) {
+                        clearInterval(timer);
+                        resolve();
+                    }
+                }, speed);
+            });
+        }
+
+        // Erase text function
+        function eraseText(element, speed = 50) {
+            return new Promise((resolve) => {
+                const text = element.textContent;
+                let i = text.length;
+                const timer = setInterval(() => {
+                    element.textContent = text.substring(0, i);
+                    i--;
+                    if (i < 0) {
+                        clearInterval(timer);
+                        resolve();
+                    }
+                }, speed);
+            });
+        }
+
+        // Start typing sequence
+        async function startTypingSequence() {
+            const typingElement = document.getElementById('typingText');
+            const enterBtn = document.getElementById('enterBtn');
+            
+            // Wait a bit before starting
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Type "Hello World"
+            await typeText(typingElement, 'Hello World', 120);
+            
+            // Wait before erasing
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Erase "Hello World"
+            await eraseText(typingElement, 80);
+            
+            // Wait before typing next text
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Type "I'm Stain."
+            await typeText(typingElement, "I'm Stain.", 120);
+            
+            // Wait before showing enter button
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Show enter button with animation
+            enterBtn.style.display = 'block';
+            enterBtn.style.opacity = '0';
+            enterBtn.style.animation = 'fadeInUp 1s ease-out forwards, pulse 2s ease-in-out 1s infinite';
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.8)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'all 0.8s ease-out';
+            observer.observe(section);
+        });
+
+        // Dynamic name animation
+        function animateHeroName() {
+            const heroTitle = document.getElementById('heroTitle');
+            const originalName = 'Đàm Nguyến Sinh Thành';
+            const variations = [
+                'Đàm Nguyến Sinh Thành',
+                'Đàm Nguyến Sinh Thành - Developer',
+                'Đàm Nguyến Sinh Thành - Coder',
+                'Đàm Nguyến Sinh Thành - Creator',
+                'Đàm Nguyến Sinh Thành'
+            ];
+            
+            let currentIndex = 0;
+            
+            async function typewriterEffect(element, newText) {
+                const currentText = element.textContent;
+                
+                // Erase current text
+                for (let i = currentText.length; i >= 0; i--) {
+                    element.textContent = currentText.substring(0, i);
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                }
+                
+                // Add glitch effect
+                element.classList.add('glitch-effect');
+                await new Promise(resolve => setTimeout(resolve, 300));
+                element.classList.remove('glitch-effect');
+                
+                // Type new text
+                for (let i = 0; i <= newText.length; i++) {
+                    element.textContent = newText.substring(0, i);
+                    await new Promise(resolve => setTimeout(resolve, 80));
+                }
+            }
+            
+            setInterval(async () => {
+                currentIndex = (currentIndex + 1) % variations.length;
+                await typewriterEffect(heroTitle, variations[currentIndex]);
+            }, 8000);
+        }
+
+        // Add scroll-triggered animations
+        function addScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.project-card, .skill-item');
+            
+            animatedElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(50px)';
+                element.style.transition = `all 0.6s ease-out ${index * 0.1}s`;
+            });
+            
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animations = ['slideInLeft', 'slideInRight', 'zoomIn', 'flipIn'];
+                        const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+                        
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.animation = `${randomAnimation} 0.8s ease-out forwards`;
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                scrollObserver.observe(element);
+            });
+        }
+
+        // Mouse trail effect
+        function createMouseTrail() {
+            const trail = [];
+            const trailLength = 20;
+            
+            document.addEventListener('mousemove', (e) => {
+                trail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+                
+                if (trail.length > trailLength) {
+                    trail.shift();
+                }
+                
+                // Remove old trail elements
+                document.querySelectorAll('.mouse-trail').forEach(el => {
+                    if (Date.now() - parseInt(el.dataset.time) > 1000) {
+                        el.remove();
+                    }
+                });
+                
+                // Create new trail element
+                const trailElement = document.createElement('div');
+                trailElement.className = 'mouse-trail';
+                trailElement.dataset.time = Date.now();
+                trailElement.style.cssText = `
+                    position: fixed;
+                    left: ${e.clientX}px;
+                    top: ${e.clientY}px;
+                    width: 6px;
+                    height: 6px;
+                    background: radial-gradient(circle, rgba(102, 126, 234, 0.8), transparent);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: trailFade 1s ease-out forwards;
+                `;
+                
+                document.body.appendChild(trailElement);
+            });
+            
+            // Add trail fade animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes trailFade {
+                    0% { opacity: 1; transform: scale(1); }
+                    100% { opacity: 0; transform: scale(0.3); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Initialize intro effects
+        createParticles();
+        createMatrixRain();
+        startTypingSequence();
+        
+        // Initialize new effects after main content loads
+        setTimeout(() => {
+            animateHeroName();
+            addScrollAnimations();
+            createMouseTrail();
+        }, 5000);
+
+        // Add hover effects to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add parallax effect to floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = scrolled * 0.5;
+            
+            document.querySelectorAll('.floating-element').forEach((element, index) => {
+                const speed = (index + 1) * 0.2;
+                element.style.transform = `translateY(${parallax * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99180813f4a9ddc1',t:'MTc2MDk1ODIzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
