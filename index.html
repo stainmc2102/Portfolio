@@ -498,23 +498,22 @@
        .about-image {
     width: 300px;
     height: 300px;
-    border-radius: 50%; /* biến div thành hình tròn */
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 50%; /* hình tròn */
+    background-color: black; /* nền xung quanh */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4rem;
+    overflow: hidden; /* cắt ảnh tròn */
     margin: 0 auto;
-    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
 }
 
 .about-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
+    width: 100%; /* tự động vừa div */
+    height: 100%; /* tự động vừa div */
+    object-fit: cover; /* giữ tỉ lệ, cắt phần thừa */
 }
+
 
 
         /* Projects Section */
@@ -1023,8 +1022,8 @@
                     <p>Beyond coding, I regularly experiment with new technologies, contribute to open-source projects, and design tools that make daily workflows smoother for developers and gamers alike.</p>
                 </div>
                 <div class="about-image">
-                    <img src="https://github.com/stainmc2102.png" alt="Stain" loading="lazy" width="300" height="300" />
-                </div>
+    <img src="avatar.png" alt="Developer" />
+</div>
 
             </div>
         </section>
