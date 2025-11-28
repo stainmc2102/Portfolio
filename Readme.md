@@ -11,7 +11,7 @@
 🚀 **Visit / Truy cập:** [https://stainmc2102.vercel.app](https://stainmc2102.vercel.app)
 
 ![Preview](preview.png)
-*(Replace with a real screenshot / Thay bằng ảnh chụp thật của trang web)*
+
 
 ---
 
