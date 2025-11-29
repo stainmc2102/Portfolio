@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "type": "rich",
+  "title": "Stain - Portfolio",
+  "author_name": "Stain",
+  "author_url": "https://stainmc2102.chillverse.site/",
+  "provider_name": "Stain Portfolio",
+  "provider_url": "https://stainmc2102.vercel.app/",
+  "thumbnail_url": "https://github.com/stainmc2102.png",
+  "thumbnail_width": 300,
+  "thumbnail_height": 300
+}
